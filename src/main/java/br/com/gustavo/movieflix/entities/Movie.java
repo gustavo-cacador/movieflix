@@ -2,7 +2,7 @@ package br.com.gustavo.movieflix.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_movie")
@@ -17,6 +17,14 @@ public class Movie {
     private Integer movieYear;
     private String imgUrl;
     private String synopsis;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+
+    // aqui usamos List ao invés de Set pois n importa se o comentário sobre o filme for igual, o List mantém a ordem inserida (por data por exemplo) e o List eh melhor num caso de paginação (se tiver muitos comentários)
+    @OneToMany(mappedBy = "movie")
+    private List<Review> reviews = new ArrayList<>();
 
     public Movie() {}
 

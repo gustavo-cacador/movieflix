@@ -2,7 +2,7 @@ package br.com.gustavo.movieflix.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_user")
@@ -15,6 +15,16 @@ public class User {
     private String name;
     private String email;
     private String password;
+
+    // aqui usamos List ao invés de Set pois n importa se o comentário for igual, desde que seja de usuarios diferentes, e o List preserva a ordem de inserção (importante)
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER) // para forçar que sempre que buscar um usuario no banco ja vai vim junto os roles do usuario (os perfis do usuario)
+    @JoinTable(name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {}
 

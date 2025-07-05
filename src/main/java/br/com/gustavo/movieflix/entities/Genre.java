@@ -2,7 +2,9 @@ package br.com.gustavo.movieflix.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_genre")
@@ -12,6 +14,9 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "genre")
+    private Set<Movie> movies = new HashSet<>();
 
     public Genre() {
     }
