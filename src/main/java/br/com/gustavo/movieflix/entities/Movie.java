@@ -16,6 +16,8 @@ public class Movie {
     private String subTitle;
     private Integer movieYear;
     private String imgUrl;
+
+    @Column(columnDefinition = "TEXT")
     private String synopsis;
 
     @ManyToOne
@@ -83,6 +85,22 @@ public class Movie {
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override
