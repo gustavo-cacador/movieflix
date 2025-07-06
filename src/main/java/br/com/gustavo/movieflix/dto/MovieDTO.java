@@ -43,10 +43,6 @@ public class MovieDTO {
         entity.getReviews().forEach(review -> this.reviews.add(new ReviewDTO(review)));
     }
 
-    public MovieDTO(Movie p, Genre genre) {
-    }
-
-
     public Long getId() {
         return id;
     }

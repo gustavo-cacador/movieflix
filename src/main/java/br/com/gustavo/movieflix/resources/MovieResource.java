@@ -19,7 +19,7 @@ public class MovieResource {
 
     @GetMapping
     public ResponseEntity<Page<MovieDTO>> findAll(
-            @RequestParam(value = "genreId", required = false, defaultValue = "0") String genreId,
+            @RequestParam(value = "genreId", defaultValue = "0") String genreId,
             Pageable pageable) {
         Page<MovieDTO> list = movieService.findAllPaged(genreId, pageable);
         return ResponseEntity.ok().body(list);

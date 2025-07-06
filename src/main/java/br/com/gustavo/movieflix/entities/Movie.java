@@ -40,6 +40,7 @@ public class Movie implements IdProjection<Long> {
         this.synopsis = synopsis;
     }
 
+    @Override
     public Long getId() {
         return id;
     }

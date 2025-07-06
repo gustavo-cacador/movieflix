@@ -36,12 +36,12 @@ public class MovieService {
     @Transactional(readOnly = true)
     public Page<MovieDTO> findAllPaged(String genreId, Pageable pageable) {
 
-        List<Long> genreIds = Arrays.asList();
+        List<Long> genreIds = null;
         if (!"0".equals(genreId)) {
             genreIds = Arrays.asList(genreId.split(",")).stream().map(Long::parseLong).toList();
         }
 
-        Page<Movie> page = movieRepository.searchMoviesByGenre(genreIds, pageable);
+        Page<MovieProjection> page = movieRepository.searchMoviesByGenre(genreIds, pageable);
         List<Long> movieIds = page.map(x -> x.getId()).toList();
 
         List<Movie> entities = movieRepository.searchMoviesWithReviews(movieIds);
