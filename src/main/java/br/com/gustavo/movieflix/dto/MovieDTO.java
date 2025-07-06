@@ -43,6 +43,16 @@ public class MovieDTO {
         entity.getReviews().forEach(review -> this.reviews.add(new ReviewDTO(review)));
     }
 
+    public MovieDTO(Movie entity) {
+
+        this.id = entity.getId();
+        this.title = entity.getTitle();
+        this.subTitle = entity.getSubTitle();
+        this.movieYear = entity.getMovieYear();
+        this.imgUrl = entity.getImgUrl();
+        this.synopsis = entity.getSynopsis();
+    }
+
     public Long getId() {
         return id;
     }

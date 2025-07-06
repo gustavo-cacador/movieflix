@@ -1,24 +1,26 @@
 package br.com.gustavo.movieflix.dto;
 
 import br.com.gustavo.movieflix.entities.Review;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ReviewDTO {
+public class ReviewInsertDTO {
 
     private Long id;
     private String text;
     private String userName;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private MovieDTO movie;
 
-    public ReviewDTO() {
+    public ReviewInsertDTO() {
     }
 
-    public ReviewDTO(Long id, String text) {
+    public ReviewInsertDTO(Long id, String text) {
         this.id = id;
         this.text = text;
     }
 
-    public ReviewDTO(Review entity) {
+    public ReviewInsertDTO(Review entity) {
         id = entity.getId();
         text = entity.getText();
 
@@ -49,5 +51,9 @@ public class ReviewDTO {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public MovieDTO getMovie() {
+        return movie;
     }
 }
