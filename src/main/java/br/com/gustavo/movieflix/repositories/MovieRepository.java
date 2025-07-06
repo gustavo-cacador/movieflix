@@ -7,8 +7,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
-    @Query("SELECT m FROM Movie m WHERE (:genreId = 0 OR m.genre.id = :genreId)")
-    Page<Movie> searchMoviesByGenre(@Param("genreId") String genreId, Pageable pageable);
+    @Query("""
+    SELECT DISTINCT m
+    FROM Movie m
+    LEFT JOIN FETCH m.reviews
+    """)
+    List<Movie> searchMoviesWithReviews(List<Long> movieIds);
+
+    @Query("SELECT m FROM Movie m JOIN m.genre g WHERE (:genreIds IS NULL OR g.id IN :genreIds)")
+    Page<Movie> searchMoviesByGenre(List<Long> genreIds, Pageable pageable);
+
 }

@@ -1,12 +1,13 @@
 package br.com.gustavo.movieflix.entities;
 
+import br.com.gustavo.movieflix.projections.IdProjection;
 import jakarta.persistence.*;
 
 import java.util.*;
 
 @Entity
 @Table(name = "tb_movie")
-public class Movie {
+public class Movie implements IdProjection<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

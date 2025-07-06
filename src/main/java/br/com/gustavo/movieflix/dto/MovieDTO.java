@@ -6,7 +6,6 @@ import br.com.gustavo.movieflix.entities.Review;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class MovieDTO {
 
@@ -33,7 +32,7 @@ public class MovieDTO {
         this.synopsis = synopsis;
     }
 
-    public MovieDTO(Movie entity) {
+    public MovieDTO(Movie entity, List<Review> reviews) {
         id = entity.getId();
         title = entity.getTitle();
         subTitle = entity.getSubTitle();
@@ -42,6 +41,9 @@ public class MovieDTO {
         synopsis = entity.getSynopsis();
 
         entity.getReviews().forEach(review -> this.reviews.add(new ReviewDTO(review)));
+    }
+
+    public MovieDTO(Movie p, Genre genre) {
     }
 
 
