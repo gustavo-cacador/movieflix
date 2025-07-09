@@ -8,7 +8,7 @@ public class ReviewDTO {
     private String text;
     private String userName;
 
-    private MovieDTO movie;
+    private Long movieId;
 
     public ReviewDTO() {
     }
@@ -49,5 +49,13 @@ public class ReviewDTO {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 }
