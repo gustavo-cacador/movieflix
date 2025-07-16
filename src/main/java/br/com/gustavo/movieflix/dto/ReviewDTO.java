@@ -1,6 +1,7 @@
 package br.com.gustavo.movieflix.dto;
 
 import br.com.gustavo.movieflix.entities.Review;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ReviewDTO {
 
@@ -8,6 +9,7 @@ public class ReviewDTO {
     private String text;
     private String userName;
 
+    @JsonIgnore
     private Long movieId;
 
     public ReviewDTO() {

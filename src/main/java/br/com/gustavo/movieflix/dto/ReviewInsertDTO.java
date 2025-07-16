@@ -2,10 +2,13 @@ package br.com.gustavo.movieflix.dto;
 
 import br.com.gustavo.movieflix.entities.Review;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 
 public class ReviewInsertDTO {
 
     private Long id;
+
+    @NotBlank(message = "O texto é obrigatório")
     private String text;
     private String userName;
 
