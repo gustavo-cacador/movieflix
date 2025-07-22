@@ -30,7 +30,7 @@ public class MovieService {
         Optional<Movie> obj = movieRepository.findById(id);
         var movie = obj.orElseThrow(
                 () -> new ResourceNotFoundException("Filme com id: " + id + ", não encontrado"));
-        return new MovieDTO(movie, movie.getReviews());
+        return new MovieDTO(movie);
     }
 
     @Transactional(readOnly = true)
@@ -48,7 +48,7 @@ public class MovieService {
 
         entities = (List<Movie>) Utils.replace(page.getContent(), entities);
 
-        List<MovieDTO> dtos = entities.stream().map(m -> new MovieDTO(m, m.getReviews())).toList();
+        List<MovieDTO> dtos = entities.stream().map(MovieDTO::new).toList();
 
         return new PageImpl<>(dtos, page.getPageable(), page.getTotalElements());
     }

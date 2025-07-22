@@ -71,7 +71,7 @@ public class MovieControllerIT {
         result.andExpect(jsonPath("$.id").value(existingId));
         result.andExpect(jsonPath("$.title").isNotEmpty());
         result.andExpect(jsonPath("$.subTitle").isNotEmpty());
-        result.andExpect(jsonPath("$.year").isNotEmpty());
+        result.andExpect(jsonPath("$.movieYear").isNotEmpty());
         result.andExpect(jsonPath("$.imgUrl").isNotEmpty());
         result.andExpect(jsonPath("$.synopsis").isNotEmpty());
         result.andExpect(jsonPath("$.genre").isNotEmpty());
