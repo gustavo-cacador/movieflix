@@ -25,12 +25,13 @@ public class ReviewService {
     public ReviewInsertDTO insert(ReviewInsertDTO dto) {
         var review = new Review();
         review.setText(dto.getText());
+        review.setMovie(movieRepository.getReferenceById(dto.getMovieId()));
 
-        if (dto.getMovie() == null || dto.getMovie().getId() == null) {
+        if (dto.getMovieId() == null) {
             throw new IllegalArgumentException("Movie ID is required");
         }
 
-        Long movieId = dto.getMovie().getId();
+        Long movieId = dto.getMovieId();
         var movie = movieRepository.findById(movieId)
                 .orElseThrow(() -> new ResourceNotFoundException("Movie not found"));
         review.setMovie(movie);

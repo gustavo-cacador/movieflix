@@ -11,9 +11,9 @@ public class ReviewInsertDTO {
     @NotBlank(message = "O texto é obrigatório")
     private String text;
     private String userName;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private MovieDTO movie;
+    private String userEmail;
+    private Long movieId;
+    private Long userId;
 
     public ReviewInsertDTO() {
     }
@@ -26,9 +26,12 @@ public class ReviewInsertDTO {
     public ReviewInsertDTO(Review entity) {
         id = entity.getId();
         text = entity.getText();
+        movieId = entity.getMovie().getId();
 
         if (entity.getUser() != null) {
+            this.userId = entity.getUser().getId();
             this.userName = entity.getUser().getName();
+            this.userEmail = entity.getUser().getEmail();
         }
     }
 
@@ -56,7 +59,27 @@ public class ReviewInsertDTO {
         this.userName = userName;
     }
 
-    public MovieDTO getMovie() {
-        return movie;
+    public Long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

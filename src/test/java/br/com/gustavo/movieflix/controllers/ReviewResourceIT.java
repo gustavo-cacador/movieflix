@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import br.com.gustavo.movieflix.dto.ReviewInsertDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,11 +94,11 @@ public class ReviewResourceIT {
         String reviewText = "Gostei do filme!";
         long movieId = 1L;
 
-        ReviewDTO reviewDTO = new ReviewDTO();
-        reviewDTO.setText(reviewText);
-        reviewDTO.setMovieId(movieId);
+        ReviewInsertDTO reviewInsertDTO = new ReviewInsertDTO();
+        reviewInsertDTO.setText(reviewText);
+        reviewInsertDTO.setMovieId(movieId);
 
-        String jsonBody = objectMapper.writeValueAsString(reviewDTO);
+        String jsonBody = objectMapper.writeValueAsString(reviewInsertDTO);
 
         ResultActions result =
                 mockMvc.perform(post("/reviews")
@@ -110,7 +111,7 @@ public class ReviewResourceIT {
 
         result.andExpect(jsonPath("$.id").isNotEmpty());
         result.andExpect(jsonPath("$.text").value(reviewText));
-        result.andExpect(jsonPath("$.movieId").value(movieId));
+        result.andExpect(jsonPath("$.movieId").value(1L));
         result.andExpect(jsonPath("$.userId").isNotEmpty());
         result.andExpect(jsonPath("$.userName").isNotEmpty());
         result.andExpect(jsonPath("$.userEmail").value(memberUsername));
