@@ -93,7 +93,7 @@ public class MovieControllerIT {
         result.andExpect(jsonPath("$.id").value(existingId));
         result.andExpect(jsonPath("$.title").isNotEmpty());
         result.andExpect(jsonPath("$.subTitle").isNotEmpty());
-        result.andExpect(jsonPath("$.year").isNotEmpty());
+        result.andExpect(jsonPath("$.movieYear").isNotEmpty());
         result.andExpect(jsonPath("$.imgUrl").isNotEmpty());
         result.andExpect(jsonPath("$.synopsis").isNotEmpty());
         result.andExpect(jsonPath("$.genre").isNotEmpty());
@@ -139,7 +139,7 @@ public class MovieControllerIT {
         result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
         result.andExpect(jsonPath("$.content[0].title").value("A Voz do Silêncio"));
         result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
-        result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
+        result.andExpect(jsonPath("$.content[0].movieYear").isNotEmpty());
         result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
 
         result.andExpect(jsonPath("$.content[1].title").value("Bob Esponja"));
@@ -163,7 +163,7 @@ public class MovieControllerIT {
         result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
         result.andExpect(jsonPath("$.content[0].title").value("A Voz do Silêncio"));
         result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
-        result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
+        result.andExpect(jsonPath("$.content[0].movieYear").isNotEmpty());
         result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
 
         result.andExpect(jsonPath("$.content[1].title").value("Bob Esponja"));
@@ -189,7 +189,7 @@ public class MovieControllerIT {
         result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
         result.andExpect(jsonPath("$.content[0].title").value("Bob Esponja"));
         result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
-        result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
+        result.andExpect(jsonPath("$.content[0].movieYear").isNotEmpty());
         result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
 
         result.andExpect(jsonPath("$.content[1].title").value("Kingsman"));
