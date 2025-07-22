@@ -5,6 +5,7 @@ import br.com.gustavo.movieflix.services.MovieService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,6 +26,7 @@ public class MovieResource {
         return ResponseEntity.ok().body(list);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_VISITOR', 'ROLE_MEMBER')")
     @GetMapping("{id}")
     public ResponseEntity<MovieDTO> findById(@PathVariable Long id) {
         MovieDTO dto = movieService.findById(id);
