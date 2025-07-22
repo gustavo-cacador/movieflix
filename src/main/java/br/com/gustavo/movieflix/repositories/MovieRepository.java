@@ -13,7 +13,8 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("SELECT m.id AS id, m.title AS title FROM Movie m JOIN m.genre g " +
-            "WHERE (:genreIds IS NULL OR g.id IN :genreIds)")
+            "WHERE (:genreIds IS NULL OR g.id IN :genreIds)" +
+            "ORDER BY m.title ASC")
     Page<MovieProjection> searchMoviesByGenre(@Param("genreIds") List<Long> genreIds, Pageable pageable);
 
 
