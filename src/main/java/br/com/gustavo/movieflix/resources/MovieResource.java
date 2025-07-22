@@ -18,6 +18,7 @@ public class MovieResource {
         this.movieService = movieService;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_VISITOR', 'ROLE_MEMBER')")
     @GetMapping
     public ResponseEntity<Page<MovieDTO>> findAll(
             @RequestParam(value = "genreId", defaultValue = "0") String genreId,
